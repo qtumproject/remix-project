@@ -50,6 +50,14 @@ export const initWorkspace = (filePanelPlugin) => async (reducerDispatch: React.
         plugin.setWorkspace({ name: 'default_workspace', isLocalhost: false })
         dispatch(setCurrentWorkspace('default_workspace'))
         await loadWorkspacePreset('remixDefault')
+      } else if (localStorage.getItem("currentWorkspace")) {
+        const index = workspaces.indexOf(localStorage.getItem("currentWorkspace"))
+        if (index !== -1) {
+          const name = localStorage.getItem("currentWorkspace")
+          workspaceProvider.setWorkspace(name)
+          plugin.setWorkspace({ name, isLocalhost: false })
+          dispatch(setCurrentWorkspace(name))
+        }
       } else {
         if (workspaces.length > 0) {
           workspaceProvider.setWorkspace(workspaces[workspaces.length - 1])

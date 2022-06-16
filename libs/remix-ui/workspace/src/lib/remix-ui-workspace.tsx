@@ -15,6 +15,7 @@ export function Workspace () {
   const workspaceCreateTemplateInput = useRef()
 
   useEffect(() => {
+    setCurrentWorkspace(localStorage.getItem('currentWorkspace') ? localStorage.getItem('currentWorkspace') : '')
     resetFocus()
   }, [])
 
@@ -88,6 +89,7 @@ export function Workspace () {
     const workspaceTemplateName = workspaceCreateTemplateInput.current.value || 'remixDefault'
 
     try {
+      console.log("create workspace")
       await global.dispatchCreateWorkspace(workspaceName, workspaceTemplateName)
     } catch (e) {
       global.modal('Create Workspace', e.message, 'OK', () => {}, '')
@@ -215,7 +217,13 @@ export function Workspace () {
                   title='Restore Workspaces Backup'>
                 </span>
               </span>
-              <select id="workspacesSelect" value={currentWorkspace} data-id="workspacesSelect" onChange={(e) => switchWorkspace(e.target.value)} className="form-control custom-select">
+              <select
+                id="workspacesSelect"
+                value={currentWorkspace}
+                data-id="workspacesSelect"
+                onChange={(e) => switchWorkspace(e.target.value)}
+                className="form-control custom-select"
+              >
                 {
                   global.fs.browser.workspaces
                     .map((folder, index) => {
