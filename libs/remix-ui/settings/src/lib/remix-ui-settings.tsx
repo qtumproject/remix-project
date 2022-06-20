@@ -253,6 +253,7 @@ export const RemixUiSettings = (props: RemixUiSettingsProps) => {
           removeTokenToast(props.config, dispatchToast, "github-user-name")
           removeTokenToast(props.config, dispatchToast, "github-email")
         }}
+        config={props.config}
       />
       {token('etherscan')}
       {swarmSettings()}
