@@ -82,10 +82,19 @@ Production build will be served by default to `http://localhost:8080/` or `http:
 Prerequisites: 
 * Docker (https://docs.docker.com/desktop/)
 
-### Run with docker
+### Run qtum/remix within a docker container
+
+- If you decide to clone this repo, you can build and start qtum/remix locally like this
 
 ```
 docker build -t qtum/remix .    
+docker run  -d  --rm -p 8080:8080 --name qtum-remix qtum/remix:latest  
+```
+
+- You can also build and start qtum/remix locally without cloning this repo
+
+```
+curl https://raw.githubusercontent.com/qtumproject/remix-project/master/Dockerfile | docker build -t qtum/remix:latest -
 docker run  -d  --rm -p 8080:8080 --name qtum-remix qtum/remix:latest  
 ```
 
