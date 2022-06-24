@@ -81,40 +81,17 @@ Production build will be served by default to `http://localhost:8080/` or `http:
 
 Prerequisites: 
 * Docker (https://docs.docker.com/desktop/)
-* Docker Compose (https://docs.docker.com/compose/install/)
 
 ### Run with docker
 
-If you want to run latest changes that are merged into master branch then run:
-
 ```
-docker pull remixproject/remix-ide:latest
-docker run -p 8080:80 remixproject/remix-ide:latest
-```
-
-If you want to run latest remix-live release run.
-```
-docker pull remixproject/remix-ide:remix_live
-docker run -p 8080:80 remixproject/remix-ide:remix_live
-```
-
-### Run with docker-compose:
-
-To run locally without building you only need docker-compose.yaml file and you can run:
-
-```
-docker-compose pull
-docker-compose up -d
+docker build -t qtum/remix .    
+docker run  -d  --rm -p 8080:8080 --name qtum-remix qtum/remix:latest  
 ```
 
 Then go to http://localhost:8080 and you can use you Remix instance.
 
-To fetch docker-compose file without cloning this repo run:
-```
-curl https://raw.githubusercontent.com/ethereum/remix-project/master/docker-compose.yaml > docker-compose.yaml
-```
-
-### Troubleshooting
+## Troubleshooting
 
 If you have trouble building the project, make sure that you have the correct version of `node`, `npm` and `nvm`. Also ensure [Nx CLI](https://nx.dev/react/cli/overview) is installed globally.
 
